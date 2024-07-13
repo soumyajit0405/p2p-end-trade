@@ -21,7 +21,7 @@ public class ScheduleDAO {
 			throws SQLException, ClassNotFoundException {
 		PreparedStatement pstmt = null;
 		time = time + ":00";
-		// time="16:21"+":00";
+	 	// time="16:21"+":00";
 		// JDBCConnection connref =new JDBCConnection();
 		if (con == null) {
 			con = JDBCConnection.getOracleConnection();
@@ -35,12 +35,9 @@ public class ScheduleDAO {
 		String query = "select aso.sell_order_id,ubc.private_key,ubc.user_address,abc.order_id,abc.all_blockchain_orders_id from all_sell_orders aso,all_blockchain_orders abc, user_blockchain_keys ubc where aso.transfer_end_ts ='"
 				+ date + " " + time
 				+ "' and abc.general_order_id=aso.sell_order_id and abc.order_type='SELL_ORDER' and ubc.user_id  = aso.seller_id and aso.order_status_id=4";
-		// String query="select
-		// aso.sell_order_id,ubc.private_key,ubc.public_key,abc.order_id,abc.all_blockchain_orders_id
-		// from all_sell_orders aso,all_blockchain_orders abc, user_blockchain_keys ubc
-		// where aso.transfer_end_ts ='2020-04-30 23:15:00' and
-		// abc.general_order_id=aso.sell_order_id and abc.order_type='SELL_ORDER' and
-		// ubc.user_id = aso.seller_id and aso.order_status_id=4";
+		
+//		String query = "select aso.sell_order_id,ubc.private_key,ubc.user_address,abc.order_id,abc.all_blockchain_orders_id from all_sell_orders aso,all_blockchain_orders abc, user_blockchain_keys ubc where aso.transfer_end_ts ='2021-10-29 23:33:00' "+
+//				 " and abc.general_order_id=aso.sell_order_id and abc.order_type='SELL_ORDER' and ubc.user_id  = aso.seller_id and aso.order_status_id=4";
 		pstmt = con.prepareStatement(query);
 		// pstmt.setString(1,controllerId);
 		ResultSet rs = pstmt.executeQuery();

@@ -14,13 +14,13 @@ public class ActionThreadPoolExecutor {
 		if (sdo.getBlockChainSettings().equalsIgnoreCase("Y") ) {
 		ArrayList<HashMap<String, String>> pendingTrades = scd.getPendingTrades();
 		System.out.println("List of Pending Trades");
-		if (pendingTrades.size() > 0) {
+		if (pendingTrades.size() > 0) { 
 
 			ExecutorService executor = Executors.newFixedThreadPool(pendingTrades.size());// creating a pool of 1000
 																							// threads
 			for (int i = 0; i < pendingTrades.size(); i++) {
 				Runnable worker = new WorkerThread(pendingTrades.get(i).get("orderId"),
-						(pendingTrades.get(i).get("privateKey")), pendingTrades.get(i).get("user_address"),
+						(pendingTrades.get(i).get("privateKey")), pendingTrades.get(i).get("userAddress"),
 						Integer.parseInt(pendingTrades.get(i).get("generalOrderId")),
 						Integer.parseInt(pendingTrades.get(i).get("blockChainOrderId")));
 				System.out.println("List of run workers");

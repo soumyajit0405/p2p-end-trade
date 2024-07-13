@@ -18,7 +18,7 @@ public class ScheduleChunk {
 		  final long HALFHOUR = 1800*1000;
 	        Date d1=new Date(new Date().getTime() +5*HOUR+HALFHOUR - 5*ONE_MINUTE_IN_MILLIS);
 	      
-	       
+	        
 	        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
 	       //SimpleDateFormat dt1 = new SimpleDateFormat("2018-03-06");
 	        System.out.println(dt1.format(d1));

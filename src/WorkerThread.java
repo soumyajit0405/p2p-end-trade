@@ -14,7 +14,7 @@ class WorkerThread implements Runnable {
 	private String userAddress;
 	private int generalOrderId;
 	private int blockChainOrderId;
-
+ 
 	public WorkerThread(String orderId, String privateKey, String userAddress, int generalOrderId, int blockChainOrderId) {
 		this.orderId = orderId;
 		this.privateKey = privateKey;
@@ -39,14 +39,14 @@ class WorkerThread implements Runnable {
 			inputDetails1.put("sellerAddress", userAddress);
 			inputDetails1.put("sellerPrivatekey", privateKey);
 			HashMap<String, String> responseFrombcnetwork = httpconnectorhelper
-					.sendPostWithToken("http://159.89.175.110:3000/api/endTrade", inputDetails1, 1,"");
+					.sendPostWithToken("http://159.89.175.110:5005/api/endTrade", inputDetails1, 1,"");
 			// HashMap<String,String> responseAfterParse =
 			// cm.parseInput(responseFrombcnetwork);
 			if (responseFrombcnetwork.get("Status").equalsIgnoreCase("Trading Ended")) {
 				// AllBlockchainOrder allbcorder=
 				// bcdao.createBlockchainOrder(responseFrombcnetwork.get("Batch_id"),responseFrombcnetwork.get("order_id"),count1);
 				// // Call BC API and put it in another method
-				dbhelper.createBlockchainTx(responseFrombcnetwork.get("Tx"), "TRADE_STARTED",  blockChainOrderId);
+				dbhelper.createBlockchainTx(responseFrombcnetwork.get("Tx"), "TRADE_ENDED",  blockChainOrderId);
 				sdao.updateOrderStatus(generalOrderId);
 			}
 	} catch (ClassNotFoundException e) {

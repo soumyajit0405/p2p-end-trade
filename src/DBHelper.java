@@ -13,7 +13,7 @@ public class DBHelper {
 			//JDBCConnection connref =new JDBCConnection();
 		 if (ScheduleDAO.con == null ) {
 				con = JDBCConnection.getOracleConnection();
-		 }
+		 } 
 		 Connection	con = JDBCConnection.getOracleConnection(); 
 			PreparedStatement pstmt = null;
 			String playerId="";
